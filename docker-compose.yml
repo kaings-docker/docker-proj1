@@ -1,0 +1,29 @@
+redis:
+  image: redis
+  
+db:
+  image: postgres:9.4
+  environment:
+    POSTGRES_USER: "postgres"
+    POSTGRES_PASSWORD: "postgres"
+
+worker:
+  image: worker-app
+  links:
+    - db
+    - redis
+
+vote:
+  image: voting-app
+  ports:
+    - 5000:80
+  links:
+    - redis
+
+result:
+  image: result-app
+  ports:
+    - 5001:80
+  links:
+    - db
+
