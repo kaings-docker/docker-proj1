@@ -42,3 +42,12 @@ docker system df -v
 // ref: https://docs.docker.com/engine/reference/commandline/builder_prune/
 docker builder prune
 
+
+// docker has 3 networks:
+// - bridge (default) 
+//   ... internal network for containers is build isolated frm outside world. Containers can access each other using this internal network by using their ips. Containers can also be accessed frm the docker host. To open access from outside world, we need to map the port
+// - none
+//   ... totally isolated network frm outside world & other containers. Containers are NOT able to access other containers & outsideworld
+// - host
+//   ... there is no isolation between docker host & its containers. The network is same as the host itself.
+
