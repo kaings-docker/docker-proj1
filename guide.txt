@@ -1,0 +1,8 @@
+// run tomcat:8.0 container & automatically remove the container when it exits (--rm)
+docker run -it --rm -p 8888:8080 tomcat:8.0
+
+
+// execute command inside the running container
+// syntax: docker exec [container_id/container_name] [COMMAND]
+docker exec [container_id/container_name] ps -eaf
+
