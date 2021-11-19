@@ -6,3 +6,24 @@ docker run -it --rm -p 8888:8080 tomcat:8.0
 // syntax: docker exec [container_id/container_name] [COMMAND]
 docker exec [container_id/container_name] ps -eaf
 
+
+// for persistent data, we have 2 ways to run container:
+// 1) volume mounting
+// example1
+docker volume create data_volume                    // create volume mount under /var/lib/docker/volumes (/var/lib/docker/volumes/data_volume)
+docker run -v data_volume:/var/lib/mysql mysql      // volume mount mysql data at /var/lib/mysql to host data_volume storage (for persistent storage)
+
+// example2
+// automatically create volume data_volume2 (location: /var/lib/docker/volumes/data_volume2) and
+// mount it to mysql storage to create persistent storage
+docker run -v data_volume2:/var/lib/mysql mysql
+
+
+// 2) bind mounting
+// bind mounting is the case when we want to create persistent storage in arbitrary location other than 
+// location /var/lib/docker/volumes
+docker run -v /data/mysql:/var/lib/mysql mysql
+
+
+// new way of writing mounting (both volume & bind mount), by using `--mount` flag
+docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
