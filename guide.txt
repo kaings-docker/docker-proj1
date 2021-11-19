@@ -27,3 +27,18 @@ docker run -v /data/mysql:/var/lib/mysql mysql
 
 // new way of writing mounting (both volume & bind mount), by using `--mount` flag
 docker run --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
+
+
+// to see how particular docker image is built (steps specified in Dockerfile)
+docker history [image_ID]
+
+// to show the actual disk usage of docker (compare: for linux disk usage info can be viewed using command `du`)
+docker system df
+
+// to see disk usage of docker with breakdown by image
+docker system df -v
+
+// to remove docker build cache
+// ref: https://docs.docker.com/engine/reference/commandline/builder_prune/
+docker builder prune
+
