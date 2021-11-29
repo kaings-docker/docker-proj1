@@ -51,3 +51,12 @@ docker builder prune
 // - host
 //   ... there is no isolation between docker host & its containers. The network is same as the host itself.
 
+
+// Docker image (Dockerfile) RUN vs CMD vs ENTRYPOINT
+// RUN ... simply run a command or script (some bash script or linux command needed for the docker image)
+// CMD ... run container command. If we put other command when running container, that command will REPLACE command that is specified using CMD
+// ENTRYPOINT ... run container command. If we put other command when running container, that command will be APPENDED to command that is specified using ENTRYPOINT
+                  use `--entrypoint` flag to replace ENTRYPOINT 
+                  since CMD nature is to be overwritten (if other command specified during docker run) &
+                  since ENTRYPOINT nature is to append specified command to it (if other command specifiedduring docker run),
+                  we can combine ENTRYPOINT & CMD.
